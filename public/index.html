@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DocsToSheets - Microsoft Tools & Google Tools</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+          font-family: "Times New Roman", Times, serif;
+    }
+
+    body {
+
+      background-color: #1e1e2f;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+    header {
+      height: 80px;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      color: #00ff99;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 1000;
+    }
+    .logo-text {
+      font-size: 32px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-text sup {
+      font-size: 16px;
+      color: #00e676;
+      margin-left: 5px;
+    }
+    .logo {
+      width: 90px;          
+      height: 90px;
+      border-radius: 12%;   
+      object-fit: contain;
+      margin-right: 12px;
+    }
+
+    .site-address {
+      font-size: 14px;
+      color: #a5ffb0;
+      font-style: italic;
+    }
+    .auth-links {
+      position: absolute;
+      top: 15px;
+      right: 150px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .auth-links a, .auth-links button {
+      color: #ffffff;
+      text-decoration: none;
+      background-color: #0078d7;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .auth-links a:hover, .auth-links button:hover {
+      background-color: #005a9e;
+    }
+    .container {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    nav {
+      width: 250px;
+      background: #292c34;
+      padding: 20px;
+      overflow-y: auto;
+      height: calc(100vh - 70px);
+      border-right: 2px solid #3d4149;
+    }
+
+    nav h2 {
+      color: #00e5ff;
+      margin-bottom: 15px;
+    }
+
+    nav ul {
+      list-style: none;
+    }
+
+    nav ul li {
+      margin-bottom: 10px;
+    }
+
+    nav ul li a {
+      color: #f1f1f1;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    nav ul li a:hover {
+      color: #00e676;
+    }
+
+    main {
+      flex: 1;
+      padding: 40px;
+      overflow-y: auto;
+      background-color: #1f212b;
+      height: calc(100vh - 70px);
+    }
+
+    main h1 {
+      color: #00e5ff;
+      margin-bottom: 25px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section h2 {
+      color: #00c853;
+      margin-bottom: 10px;
+    }
+
+    .section ul {
+      margin-left: 20px;
+    }
+
+    .example {
+      background-color: #2d2f3a;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border-left: 5px solid #00e676;
+    }
+
+    pre {
+      background-color: #1c1d22;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+      color: #00e676;
+      font-family: Consolas, monospace;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      width: 125px;
+      height: 125px;
+      border-radius: 10%;
+      margin-right: 12px;
+    }
+    .tool-link, .tool-button {
+      display: inline-block;
+      background-color: #00e676;
+      color: #000;
+      padding: 10px 20px;
+      margin: 5px 0;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .tool-link:hover, .tool-button:hover {
+      background-color: #00c853;
+      color: #fff;
+    }
+
+
+
+
+     * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+  }
+
+  header.navbar {
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    position: relative;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo {
+    height: 70px;
+    width: 70px;
+    border-radius: 10%;
+  }
+
+  .logo-text {
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .logo-text sup {
+    font-size: 14px;
+    color: #00e676;
+  }
+
+  .auth-links {
+    display: flex;
+    gap: 10px;
+  }
+
+  .auth-links a {
+    padding: 8px 14px;
+    background-color: #0078d7;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+  }
+
+  .auth-links a:nth-child(2) {
+    background-color: #28a745;
+  }
+
+  #user-initial {
+    display: none;
+    background-color: #0d6efd;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.2rem;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    display: flex;
+  }
+
+  #user-dropdown {
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 10001;
+  }
+
+  #logout-btn {
+    background: #209aff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  #signin-recommendation {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .signin-popup {
+    background: #111;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 400px;
+    color: white;
+  }
+
+  .modal-buttons a {
+    margin: 5px;
+    padding: 10px 18px;
+    background-color: #0d6efd;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    display: inline-block;
+  }
+
+  .modal-buttons a:nth-child(2) {
+    background-color: #4564ff;
+  }
+
+
+  #profile-link {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #6583f9; /* Green shade */
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+#profile-link:hover {
+  background-color: #6583f9;
+  transform: scale(1.05);
+}
+
+#profile-link:active {
+  background-color: #6583f9;
+  transform: scale(0.98);
+}
+
+</style>
+</head>
+<body>
+<header class="navbar">
+  <div class="logo-container">
+    <img src="logo.png" alt="Logo" class="logo" />
+    <div class="logo-text">DocsToSheets<sup></sup></div>
+  </div>
+<div class="profile-link-container">
+  <a href="userDetails.html" id="profile-link">Profile</a>
+</div>
+
+  <div class="auth-links" id="auth-buttons">
+    <a href="signin.html" id="signin-btn">Sign In</a>
+    <a href="signup.html" id="signup-btn">Sign Up</a>
+  </div>
+
+  <!-- 🔠 User Initial (Avatar) -->
+</header>
+
+
+<!-- 🔔 Sign-In Recommendation Modal -->
+<div id="signin-recommendation">
+  <div class="signin-popup">
+    <h3>Welcome to DocsToSheets</h3>
+    <p>To access all features, please sign in or create an account.</p>
+    <div class="modal-buttons">
+      <a href="signin.html" id="signin-btn-modal">Sign In</a>
+      <a href="signup.html" id="signup-btn-modal">Sign Up</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+    <nav>
+      <h2>Microsoft Tools</h2>
+    <ul>
+  <li><a class="tool-button" href="word.html">Word</a></li>
+  <li><a class="tool-button" href="excel.html">Excel</a></li>
+  <li><a class="tool-button" href="teams.html">Teams</a></li>
+  <li><a class="tool-button" href="visual_studio.html">Visual Studio</a></li>
+  <li><a class="tool-button" href="powerBI.html">Power BI</a></li>  
+  <li><a class="tool-button" href="onenote.html">Onenote</a></li>
+  <li><a class="tool-button" href="sway.html">Sway</a></li>
+
+</ul>
+
+    </nav>
+ <nav>
+      <h2>Google Tools</h2>
+      <ul>
+      <li><a class="tool-link" href="firebase.html">Firebase</a></li>
+      <li><a class="tool-link" href="devtools.html">Chrome DevTools</a></li>
+      <li><a class="tool-link" href="studio.html">Android Studio</a></li>
+      <li><a class="tool-link" href="colab.html">Google Colab</a></li>
+      <li><a class="tool-link" href="forms.html">Google Forms</a></li>
+
+      </ul>
+    </nav>
+      <main>
+<h1 style="text-align: center"><strong>Microsoft Tools and Services</strong></h1>
+      <h1>Microsoft Word Tools/Features - DocsToSheets</h1>
+       <div class="section">
+        <h2>Key Tools in Word</h2>
+        <ul>
+          <li><strong>Home Tab:</strong> Font styling, Paragraph alignment, Bullets and Numbering</li>
+          <li><strong>Insert Tab:</strong> Insert images, tables, links, headers, footers</li>
+          <li><strong>Design Tab:</strong> Themes, Document formatting, Watermarks</li>
+          <li><strong>Layout Tab:</strong> Page margins, orientation, spacing</li>
+          <li><strong>References Tab:</strong> Table of contents, citations, bibliography</li>
+          <li><strong>Review Tab:</strong> Spelling & grammar, comments, track changes</li>
+          <li><strong>View Tab:</strong> Read mode, print layout, zoom controls</li>
+        </ul>
+      </div>
+      <h1>Microsoft Excel Tools/Features - DocsToSheets</h1>
+              <div class="section">
+        <h2>Key Tools in Excel</h2>
+  <ul>
+    <li><strong>Home Tab:</strong> Clipboard, Font styling, Alignment, Number formatting, Conditional formatting, Cells, Editing</li>
+    <li><strong>Insert Tab:</strong> Tables, PivotTables, Charts, Illustrations (Images, Shapes, Icons), Sparklines, Filters, Links</li>
+    <li><strong>Page Layout Tab:</strong> Themes, Page setup, Scale to fit, Sheet options, Arrange</li>
+    <li><strong>Formulas Tab:</strong> Function Library, Defined Names, Formula Auditing, Calculation options</li>
+    <li><strong>Data Tab:</strong> Get & Transform, Sort & Filter, Data Tools (Validation, Remove duplicates), Forecast, Outline (Group/Ungroup)</li>
+    <li><strong>Review Tab:</strong> Proofing (Spelling, Thesaurus), Accessibility, Comments, Protect Sheet/Workbook</li>
+    <li><strong>View Tab:</strong> Workbook Views, Show/Hide, Zoom, Window arrangement, Macros</li>
+  </ul>
+  </div>
+  <h1>Microsoft Teams Tools/Features - DocsToSheets</h1>
+  <div class="section">
+    <h2>Key Tools in Teams</h2>
+  <ul>
+    <li><strong>Chat Tab:</strong> Instant messaging, file sharing, emoji reactions, GIFs</li>
+    <li><strong>Teams Tab:</strong> Create or join teams, collaborate on channels, organize topics</li>
+    <li><strong>Meetings/Calendar Tab:</strong> Schedule meetings, view calendar, join video calls</li>
+    <li><strong>Calls Tab:</strong> Make voice/video calls, access voicemail, contact directory</li>
+    <li><strong>Files Tab:</strong> View recent documents, shared files, and access OneDrive</li>
+    <li><strong>Apps Tab:</strong> Integrate productivity apps like Planner, Forms, Power BI</li>
+    <li><strong>Activity Tab:</strong> View mentions, replies, missed calls, and team activity</li>
+    <li><strong>Search Bar:</strong> Quickly find messages, files, and commands</li>
+    <li><strong>Command Box (/):</strong> Use shortcuts like <code>/call</code>, <code>/files</code>, <code>/goto</code></li>
+    <li><strong>Settings Menu:</strong> Customize notifications, themes, privacy options</li>
+  </ul>
+  </div>
+  <h1>Microsoft visual studio Tools/Features - DocsToSheets</h1>
+  <div class="section">
+    <h2>Key Tools in Visual Studio</h2>
+      <ul>
+    <li><code>Ctrl + P</code> : Quick open files by name</li>
+    <li><code>Ctrl + Shift + P</code> : Open Command Palette</li>
+    <li><code>Ctrl + `</code> : Toggle integrated terminal</li>
+    <li><code>Ctrl + B</code> : Toggle sidebar visibility</li>
+    <li><code>Ctrl + Shift + E</code> : Show Explorer (file manager)</li>
+    <li><code>Ctrl + Shift + F</code> : Find in files</li>
+    <li><code>Ctrl + /**</code> : Toggle line comment</li>
+    <li><code>Alt + Up/Down</code> : Move line up/down</li>
+    <li><code>Ctrl + Space</code> : Trigger IntelliSense/autocomplete</li>
+    <li><code>F12</code> : Go to definition</li>
+    <li><code>Shift + Alt + F</code> : Format document</li>
+    <li><code>Ctrl + Shift + M</code> : Show Problems panel</li>
+  </ul>
+  </div>
+   <h1>Microsoft PowerBi Tools/Features - DocsToSheets</h1>
+  <div class="section">
+    <h2>Key Tools in PowerBi</h2>
+  <ul>
+    <li><code>Ctrl + N</code> : Create a new Power BI report</li>
+    <li><code>Ctrl + O</code> : Open an existing report</li>
+    <li><code>Ctrl + S</code> : Save current report</li>
+    <li><code>Ctrl + Z</code> : Undo last action</li>
+    <li><code>Ctrl + Y</code> : Redo last undone action</li>
+    <li><code>Ctrl + C / Ctrl + V</code> : Copy and paste visuals or elements</li>
+    <li><code>Ctrl + G</code> : Group selected visuals</li>
+    <li><code>Ctrl + Shift + G</code> : Ungroup visuals</li>
+    <li><code>Ctrl + D</code> : Duplicate selected visual</li>
+    <li><code>Ctrl + Arrow Keys</code> : Nudge visuals in the report canvas</li>
+  </ul>
+  </div>
+  <h1>      Microsoft OneNote - a digital notebook</h1>
+ <div class="section">
+    <h2>Key Features</h2>
+    <ul>
+      <li><strong>Notebooks, Sections & Pages:</strong> Organize information hierarchically for subjects, topics, or projects.</li>
+      <li><strong>Ink & Drawing Tools:</strong> Write or sketch notes with stylus or touch input.</li>
+      <li><strong>Audio & Video Notes:</strong> Record lectures or ideas directly in notes.</li>
+      <li><strong>Web Clipper:</strong> Save articles and pages directly from the web.</li>
+      <li><strong>Tagging:</strong> Use tags like To-Do, Important, Question to highlight content.</li>
+      <li><strong>Search:</strong> Find notes across notebooks using keywords or tags.</li>
+      <li><strong>Collaboration:</strong> Share and co-edit notebooks in real-time.</li>
+      <li><strong>Integration:</strong> Works with Outlook, Teams, Word, and other Microsoft tools.</li>
+    </ul>
+  </div>
+  <h1 style="text-align: center"><strong>Google Tools and Services</strong></h1>
+
+<h1>Google Firebase Tools/Features - DocsToSheets</h1>
+<div class="section">
+  <h2>Key Tools in Firebase</h2>
+  <ul>
+    <li><code>Realtime Database</code> : Store and sync data in real-time across clients</li>
+    <li><code>Authentication</code> : User sign-in with email, Google, Facebook, and more</li>
+    <li><code>Cloud Firestore</code> : NoSQL document database for scalable apps</li>
+    <li><code>Cloud Functions</code> : Run backend code triggered by events</li>
+    <li><code>Hosting</code> : Fast and secure static website hosting with SSL</li>
+    <li><code>Analytics</code> : User behavior and app performance tracking</li>
+    <li><code>Crashlytics</code> : Real-time crash reporting</li>
+    <li><code>Cloud Messaging</code> : Send notifications and messages</li>
+    <li><code>Remote Config</code> : Dynamically change app behavior and appearance</li>
+    <li><code>Test Lab</code> : Automated testing on real devices</li>
+  </ul>
+</div>
+
+<h1>Google Chrome DevTools Tools/Features - DocsToSheets</h1>
+<div class="section">
+  <h2>Key Tools in Chrome DevTools</h2>
+  <ul>
+    <li><code>Elements Panel</code> : Inspect and edit HTML/CSS live</li>
+    <li><code>Console</code> : Run JavaScript and view logs</li>
+    <li><code>Network Panel</code> : Monitor network requests and performance</li>
+    <li><code>Performance Panel</code> : Analyze runtime and page speed</li>
+    <li><code>Sources Panel</code> : Debug JavaScript with breakpoints</li>
+    <li><code>Application Panel</code> : Inspect storage, cookies, cache, and service workers</li>
+    <li><code>Security Panel</code> : Check HTTPS and security issues</li>
+    <li><code>Audits (Lighthouse)</code> : Performance and accessibility audits</li>
+    <li><code>Memory Panel</code> : Track memory leaks and usage</li>
+    <li><code>Device Mode</code> : Simulate mobile devices and screen sizes</li>
+  </ul>
+</div>
+
+<h1>Google Android Studio Tools/Features - DocsToSheets</h1>
+<div class="section">
+  <h2>Key Tools in Android Studio</h2>
+  <ul>
+    <li><code>Code Editor</code> : Smart editing with syntax highlighting and code completion</li>
+    <li><code>Layout Editor</code> : Drag-and-drop interface builder</li>
+    <li><code>Emulator</code> : Simulate Android devices for testing</li>
+    <li><code>Gradle Build System</code> : Automate build and dependency management</li>
+    <li><code>Profiler</code> : Analyze CPU, memory, and network usage</li>
+    <li><code>Debugger</code> : Step through code and inspect variables</li>
+    <li><code>Version Control Integration</code> : Built-in Git, SVN support</li>
+    <li><code>APK Analyzer</code> : Inspect APK contents and size</li>
+    <li><code>Instant Run</code> : Deploy code changes without rebuilding APK</li>
+    <li><code>Testing Tools</code> : Unit testing and UI testing frameworks</li>
+  </ul>
+</div>
+
+<h1>Google Colab Tools/Features - DocsToSheets</h1>
+<div class="section">
+  <h2>Key Tools in Google Colab</h2>
+  <ul>
+    <li><code>Jupyter Notebook Interface</code> : Interactive Python coding environment</li>
+    <li><code>GPU/TPU Support</code> : Free hardware accelerators for ML tasks</li>
+    <li><code>Code Collaboration</code> : Real-time notebook sharing and editing</li>
+    <li><code>Pre-installed Libraries</code> : Includes TensorFlow, PyTorch, NumPy, and more</li>
+    <li><code>Google Drive Integration</code> : Load and save files directly from Drive</li>
+    <li><code>Markdown Support</code> : Rich text formatting in notebooks</li>
+    <li><code>Forms and Widgets</code> : Add interactive UI elements</li>
+    <li><code>Code Snippets</code> : Quick insert of commonly used code blocks</li>
+    <li><code>Version Control</code> : Git integration for repositories</li>
+    <li><code>Export Options</code> : Export notebooks as .ipynb or .py files</li>
+  </ul>
+</div>
+
+<h1>Google Forms Tools/Features - DocsToSheets</h1>
+<div class="section">
+  <h2>Key Tools in Google Forms</h2>
+  <ul>
+    <li><code>Form Creation</code> : Easy drag-and-drop form builder</li>
+    <li><code>Question Types</code> : Multiple choice, text, checkboxes, dropdowns, scales</li>
+    <li><code>Custom Themes</code> : Change colors, fonts, and add images</li>
+    <li><code>Response Collection</code> : View answers in summary or individually</li>
+    <li><code>Google Sheets Integration</code> : Export responses for analysis</li>
+    <li><code>Collaboration</code> : Share forms with collaborators for editing</li>
+    <li><code>Quizzes</code> : Create graded quizzes with automatic scoring</li>
+    <li><code>Logic Branching</code> : Conditional questions based on responses</li>
+    <li><code>Email Notifications</code> : Get alerts when new responses arrive</li>
+    <li><code>File Upload</code> : Allow respondents to upload files</li>
+  </ul>
+</div>
+
+
+    <section style="padding: 30px; max-width: 900px; margin: auto; font-family: Arial, sans-serif;">
+    <h2 style="color: #2d6a4f; text-align: center;">About DocsToSheets</h2>
+    <p style="font-size: 18px; line-height: 1.6;">
+      <strong>DocsToSheets</strong> is an educational platform designed to help beginners and students easily learn the basic tools of <strong>Microsoft Word and Excel</strong>. Whether you're preparing documents, resumes, or managing data in spreadsheets, DocsToSheets breaks down each feature into simple, step-by-step guides and tutorials.
+    </p>
+    <p style="font-size: 18px; line-height: 1.6;">
+      We understand that many users struggle with formatting documents, aligning text, using formulas, or organizing data. That's why we've created a user-friendly website that explains these tools with:
+    </p>
+    <ul style="font-size: 18px; line-height: 1.6;">
+      <li>Easy-to-remember <strong>keyboard shortcuts</strong></li>
+      <li>Clear explanations of <strong>Word tools</strong> like font styling, paragraph alignment, bullets, and numbering</li>
+      <li>Practical use of <strong>Excel sheets</strong> with data functions, formulas, charts, and formatting</li>
+      <li>Interactive examples and simplified interface for quick learning</li>
+    </ul>
+    <p style="font-size: 18px; line-height: 1.6;">
+        Whether you're a school student, college learner, or a job seeker looking to improve productivity skills, <strong>DocsToSheets</strong> provides the foundation you need to confidently use Microsoft Office tools in both academic and professional settings.
+    </p>
+  </section>
+<!-- HTML: DocsToSheets Header + Auth Controls -->
+
+<!-- ✅ HEADER -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+  import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+
+  const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDRMijbushB_IBNn5xcfHN3UsbJC9TN6Kc",
+    authDomain: "docstosheets-803e7.firebaseapp.com",
+    projectId: "docstosheets-803e7",
+    storageBucket: "docstosheets-803e7.appspot.com",
+    messagingSenderId: "729328747721",
+    appId: "1:729328747721:web:149c3fff759c4bf7c77918"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  // Global user variable
+  let currentUser = null;
+
+  onAuthStateChanged(auth, async (user) => {
+    const popup = document.getElementById("signin-recommendation");
+    const signinBtn = document.getElementById("signin-btn");
+    const signupBtn = document.getElementById("signup-btn");
+    const badge = document.getElementById("user-initial");
+    const dropdown = document.getElementById("user-dropdown");
+    const logoutBtn = document.getElementById("logout-btn");
+
+    await delay(400); // Wait for 10 seconds before processing user status
+
+    currentUser = user; // Store current user globally
+
+    if (!user) {
+      popup.style.display = "flex";
+      if (signinBtn) signinBtn.style.display = "inline-block";
+      if (signupBtn) signupBtn.style.display = "inline-block";
+      badge.style.display = "none";
+      dropdown.style.display = "none";
+    } else {
+      try {
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        let firstName = "U";
+        if (userDoc.exists()) {
+          const data = userDoc.data();
+          firstName = (data.firstName || data.name || user.displayName || "U");
+        }
+
+        badge.textContent = firstName.charAt(0).toUpperCase();
+        badge.style.display = "flex";
+        if (signinBtn) signinBtn.style.display = "none";
+        if (signupBtn) signupBtn.style.display = "none";
+        popup.style.display = "none";
+
+        badge.addEventListener("click", () => {
+          dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        });
+
+        logoutBtn.addEventListener("click", async () => {
+          await signOut(auth);
+          window.location.reload();
+        });
+      } catch (err) {
+        console.error("Error fetching user profile:", err);
+      }
+    }
+  });
+
+  // Prevent unauthenticated access to protected buttons
+  window.addEventListener("load", () => {
+    document.querySelectorAll('[data-requires-auth="true"]').forEach((button) => {
+      button.addEventListener("click", (e) => {
+        if (!currentUser) {
+          e.preventDefault(); // Stop default action
+          const popup = document.getElementById("signin-recommendation");
+          if (popup) popup.style.display = "flex";
+        }
+      });
+    });
+  });
+</script>
+</main>
+</body>
+</html>
